@@ -38,7 +38,7 @@ const PurchaseButton: React.FC<Props> = ({ cheeseItem }) => {
       <Button 
         className={classes.checkout}
         onClick={() => handleCheckout(cheeseItem)}
-        data-cy={`${cheeseItem.id}`}>Checkout</Button>
+        data-cy={`${cheeseItem.id}`}>Purchase</Button>
     </div>
   );
 };
