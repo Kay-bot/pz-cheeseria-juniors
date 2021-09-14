@@ -3,8 +3,9 @@ import { useQuery } from 'react-query';
 // Components
 import Item from './Cart/Item/Item';
 import Cart from './Cart/Cart';
-import CheeseDetailDialog from './Cart/CheesDetailsDialog/CheesDetailDialog'
+import CheeseDetails from './Cart/Dialog/CheeseDetails'
 import Drawer from '@material-ui/core/Drawer';
+// import Button from '@material-ui/core/Button';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Grid from '@material-ui/core/Grid';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
@@ -137,7 +138,7 @@ const App = () => {
         ))}
       </Grid>
       {dialogOpen && data && (
-        <CheeseDetailDialog
+        <CheeseDetails
           open={dialogOpen}
           setOpen={setDialogOpen}
           cheeseItem={data[clickCardIndex-1]} 
