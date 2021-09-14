@@ -9,8 +9,6 @@ import { TransitionProps } from '@material-ui/core/transitions';
 import { CartItemType } from '../../App';
 import DetailCard from '../../Components/DetailCard';
 
-
-
 type Props = {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
