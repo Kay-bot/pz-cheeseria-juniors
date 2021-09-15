@@ -4,6 +4,7 @@ import { CartItemType } from '../App';
 import PurchaseButton from '../Components/PurchaseButton'
 
 
+
 type Props = {
   cartItems: CartItemType[];
   addToCart: (clickedItem: CartItemType) => void;
@@ -11,6 +12,7 @@ type Props = {
 };
 
 const Cart: React.FC<Props> = ({ cartItems, addToCart, removeFromCart }) => {
+
   const calculateTotal = (items: CartItemType[]) =>
     items.reduce((ack: number, item) => ack + item.amount * item.price, 0);
 
@@ -27,6 +29,7 @@ const Cart: React.FC<Props> = ({ cartItems, addToCart, removeFromCart }) => {
         />
       ))}
       <h2>Total: ${calculateTotal(cartItems).toFixed(2)}</h2>
+      {localStorage.setItem('totalAmount', JSON.stringify(calculateTotal(cartItems)))}
       <div>
       {cartItems.length >= 1 && <PurchaseButton cheeseItem={{
         id: 0,
@@ -39,10 +42,10 @@ const Cart: React.FC<Props> = ({ cartItems, addToCart, removeFromCart }) => {
       }} handleCheckout={function (clickedItem: CartItemType): void {
       throw new Error('Function not implemented.');
     } }/>}
-      
       </div>
     </Wrapper>
   );
+
 };
 
 export default Cart;
