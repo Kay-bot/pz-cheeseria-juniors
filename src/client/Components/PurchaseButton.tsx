@@ -6,8 +6,9 @@ import { CartItemType } from '../App';
 
 //types
 type Props = {
-  cheeseItem: CartItemType;
-  handleCheckout: (clickedItem: CartItemType) => void;
+  cartItems: CartItemType[];
+  totalAmount: number;
+  handleCheckout: (cartItems: CartItemType[], totalAmount: number) => void;
 };
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -26,19 +27,14 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const handleCheckout = (clickedItem: CartItemType): void => {
-  throw new Error('Function not implemented.');
-}
-
-const PurchaseButton: React.FC<Props> = ({ cheeseItem }) => {
+const PurchaseButton: React.FC<Props> = ({ cartItems, totalAmount, handleCheckout }) => {
   const classes = useStyles();
-
   return (
     <div className={classes.root}>
       <Button 
         className={classes.checkout}
-        onClick={() => handleCheckout(cheeseItem)}
-        data-cy={`${cheeseItem.id}`}>Purchase</Button>
+        onClick={() => handleCheckout(cartItems, totalAmount)}
+        data-cy={`items-in-cart${cartItems}`}>Purchase</Button>
     </div>
   );
 };

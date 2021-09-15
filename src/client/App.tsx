@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
+// Api
+import { CreateOrder } from './Actions/CreateOrder'
 // Components
+import PurchaseButton from './Components/PurchaseButton'
 import Item from './Cart/Item/Item';
 import Cart from './Cart/Cart';
 import CheeseDetails from './Cart/Dialog/CheeseDetails'
@@ -15,18 +18,16 @@ import Badge from '@material-ui/core/Badge';
 import { Wrapper, StyledButton, StyledAppBar, HeaderTypography } from './App.styles';
 import { AppBar, Toolbar, Typography } from '@material-ui/core';
 
-
 // Types
 export type CartItemType = {
   id: number;
-  category: string;
-  description: string;
-  image: string;
-  price: number;
   title: string;
+  price: number;
+  description: string;
+  category: string;
+  image: string;
   amount: number;
 };
-
 
 const getCheeses = async (): Promise<CartItemType[]> =>
   await (await fetch(`api/cheeses`)).json();
@@ -34,15 +35,15 @@ const getCheeses = async (): Promise<CartItemType[]> =>
 const App = () => {
   const [cartOpen, setCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState([] as CartItemType[]);
-  // Control the cheese detail dialog open state
   const [dialogOpen, setDialogOpen] = useState(false);
-  //Determine the click card index
   const [clickCardIndex, setClickCardIndex] = useState<number>(2);
   const { data, isLoading, error } = useQuery<CartItemType[]>(
     'cheeses',
     getCheeses
   );
-  console.log(data);
+
+  // total cost of cheeses cheese in the cart
+  const totalAmount = cartItems.reduce((ack: number, item) => ack + item.amount * item.price, 0);
 
   const getTotalItems = (items: CartItemType[]) =>
     items.reduce((ack: number, item) => ack + item.amount, 0);
@@ -76,6 +77,10 @@ const App = () => {
       }, [] as CartItemType[])
     );
   };
+
+  const handleCheckout = (cartItems: CartItemType[], totalAmount: number) => {
+    CreateOrder([{cartItems, totalAmount}])
+  }
 
   if (isLoading) return <LinearProgress />;
   if (error) return <div>Something went wrong ...</div>;
@@ -124,7 +129,9 @@ const App = () => {
           cartItems={cartItems}
           addToCart={handleAddToCart}
           removeFromCart={handleRemoveFromCart}
+          totalAmount={totalAmount}
         />
+         {cartItems.length >= 1 && <PurchaseButton cartItems={cartItems} totalAmount={totalAmount} handleCheckout={handleCheckout} />}
       </Drawer>
 
       <Grid container spacing={3}>

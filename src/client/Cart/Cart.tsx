@@ -1,20 +1,16 @@
 import CartItem from './CartItem/CartItem';
 import { Wrapper } from './Cart.styles';
 import { CartItemType } from '../App';
-import PurchaseButton from '../Components/PurchaseButton'
-
 
 
 type Props = {
   cartItems: CartItemType[];
+  totalAmount: number;
   addToCart: (clickedItem: CartItemType) => void;
   removeFromCart: (id: number) => void;
 };
 
-const Cart: React.FC<Props> = ({ cartItems, addToCart, removeFromCart }) => {
-
-  const calculateTotal = (items: CartItemType[]) =>
-    items.reduce((ack: number, item) => ack + item.amount * item.price, 0);
+const Cart: React.FC<Props> = ({ cartItems, totalAmount, addToCart, removeFromCart }) => {
 
   return (
     <Wrapper>
@@ -28,20 +24,8 @@ const Cart: React.FC<Props> = ({ cartItems, addToCart, removeFromCart }) => {
           removeFromCart={removeFromCart}
         />
       ))}
-      <h2>Total: ${calculateTotal(cartItems).toFixed(2)}</h2>
-      {localStorage.setItem('totalAmount', JSON.stringify(calculateTotal(cartItems)))}
+      <h2>Total: ${totalAmount.toFixed(2)}</h2>
       <div>
-      {cartItems.length >= 1 && <PurchaseButton cheeseItem={{
-        id: 0,
-        category: '',
-        description: '',
-        image: '',
-        price: 0,
-        title: '',
-        amount: 0
-      }} handleCheckout={function (clickedItem: CartItemType): void {
-      throw new Error('Function not implemented.');
-    } }/>}
       </div>
     </Wrapper>
   );
