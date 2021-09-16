@@ -6,7 +6,7 @@ import Slide from '@material-ui/core/Slide';
 import { TransitionProps } from '@material-ui/core/transitions';
 
 //Types
-import { CartItemType } from '../../App';
+import { CartItemType } from '../../Type';
 import DetailCard from '../../Components/DetailCard';
 
 

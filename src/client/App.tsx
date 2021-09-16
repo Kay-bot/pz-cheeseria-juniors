@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 // Api
-import { CreateOrder } from './Actions/CreateOrder'
+import { getCheeses, createOrder } from './Actions/ApiAction'
 // Components
 import PurchaseButton from './Components/PurchaseButton'
 import Item from './Cart/Item/Item';
@@ -17,20 +17,9 @@ import Badge from '@material-ui/core/Badge';
 // Styles
 import { Wrapper, StyledButton, StyledAppBar, HeaderTypography } from './App.styles';
 import { AppBar, Toolbar, Typography } from '@material-ui/core';
-
 // Types
-export type CartItemType = {
-  id: number;
-  title: string;
-  price: number;
-  description: string;
-  category: string;
-  image: string;
-  amount: number;
-};
+import { CartItemType } from './Type';
 
-const getCheeses = async (): Promise<CartItemType[]> =>
-  await (await fetch(`api/cheeses`)).json();
 
 const App = () => {
   const [cartOpen, setCartOpen] = useState(false);
@@ -79,7 +68,7 @@ const App = () => {
   };
 
   const handleCheckout = (cartItems: CartItemType[], totalAmount: number) => {
-    CreateOrder({cartItems, totalAmount})
+    createOrder({cartItems, totalAmount})
   }
 
   if (isLoading) return <LinearProgress />;
