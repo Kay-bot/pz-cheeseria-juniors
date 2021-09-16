@@ -8,7 +8,7 @@ const config = {
   },
 };
 
-export const CreateOrder = async (data: [{cartItems: CartItemType[], totalAmount: number}]) => {
+export const CreateOrder = async (data: {cartItems: CartItemType[], totalAmount: number}) => {
   try{
     const { data: response } = await axios.post('api/purchase', data, config);
     console.log(response.data)

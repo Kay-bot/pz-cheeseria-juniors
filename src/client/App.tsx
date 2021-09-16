@@ -79,7 +79,7 @@ const App = () => {
   };
 
   const handleCheckout = (cartItems: CartItemType[], totalAmount: number) => {
-    CreateOrder([{cartItems, totalAmount}])
+    CreateOrder({cartItems, totalAmount})
   }
 
   if (isLoading) return <LinearProgress />;
