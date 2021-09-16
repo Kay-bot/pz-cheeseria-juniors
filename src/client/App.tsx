@@ -20,6 +20,7 @@ import { Wrapper, StyledButton, StyledAppBar, HeaderTypography } from './App.sty
 import { Toolbar, Typography } from '@material-ui/core';
 // Types
 import { CartItemType } from './Type';
+import AddToCardButton from './Components/AddToCardButton';
 
 
 const App = () => {
@@ -134,12 +135,13 @@ const App = () => {
             setDialogOpen(true);
             setClickCardIndex(item.id)
           }}>
-            <Item item={item} handleAddToCart={handleAddToCart} />
+            <Item item={item} />
           </Grid>
         ))}
       </Grid>
       {dialogOpen && data && (
         <CheeseDetails
+          handleAddToCart={handleAddToCart}
           open={dialogOpen}
           setOpen={setDialogOpen}
           cheeseItem={data[clickCardIndex-1]} 
