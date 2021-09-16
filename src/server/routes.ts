@@ -5,7 +5,7 @@ import * as express from 'express';
 
 
 const cheeses = require('./data/cheeses.json');
-const purchaseHistory = require('./data/purchaseHistory.json')
+const recentPurchases = require('./data/recentPurchases.json')
 
 const router = express.Router();
 
@@ -25,8 +25,8 @@ router.post('/api/purchase', (req, res) => {
 // router.post('/api/purchase', [validateRequest(createPurchaseSchema)], createPurchaseHandler)
 
 // Get recently purchased
-router.get('/api/purchased', (req, res) => {
-    res.json(purchaseHistory)
+router.get('/api/purchases', (req, res) => {
+    res.json(recentPurchases)
 })
 
 export default router;

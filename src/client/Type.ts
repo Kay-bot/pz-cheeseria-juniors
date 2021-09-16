@@ -9,7 +9,7 @@ export type CartItemType = {
   amount: number;
 };
 
-export type PurchasedType = {
+export type RecentPurchasesType = {
   cartItems:CartItemType[]
   totalAmount: number
 }
