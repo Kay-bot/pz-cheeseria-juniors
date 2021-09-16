@@ -92,7 +92,7 @@ const App = () => {
             </StyledButton>
 
             <Drawer anchor='top' open={recentPurchasesOpen} onClose={() => setRecentPurchasesOpen(false)}>
-              {/* <RecentPurchases  /> */}
+              <RecentPurchases  />
             </Drawer>
 
             <HeaderTypography variant="h3" noWrap>
