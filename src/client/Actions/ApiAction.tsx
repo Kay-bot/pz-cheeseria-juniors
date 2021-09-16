@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { CartItemType } from '../Type';
+import { CartItemType, RecentPurchasesType } from '../Type';
 
 export const getCheeses = async (): Promise<CartItemType[]> =>
   await (await fetch(`api/cheeses`)).json();
@@ -19,5 +19,9 @@ export const createOrder = async (data: {cartItems: CartItemType[], totalAmount:
   } catch (error) {
     console.log(error)
   }
+}
+
+export const getPurchases = async (): Promise<RecentPurchasesType[]> => {
+    return await (await fetch(`api/purchases`)).json();
 }
 

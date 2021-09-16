@@ -3,6 +3,7 @@ import { useQuery } from 'react-query';
 // Api
 import { getCheeses, createOrder } from './Actions/ApiAction'
 // Components
+import RecentPurchases from './Cart/RecentPurchases/RecentPurchases'
 import PurchaseButton from './Components/PurchaseButton'
 import Item from './Cart/Item/Item';
 import Cart from './Cart/Cart';
@@ -16,13 +17,14 @@ import RestoreIcon from '@material-ui/icons/Restore';
 import Badge from '@material-ui/core/Badge';
 // Styles
 import { Wrapper, StyledButton, StyledAppBar, HeaderTypography } from './App.styles';
-import { AppBar, Toolbar, Typography } from '@material-ui/core';
+import { Toolbar, Typography } from '@material-ui/core';
 // Types
 import { CartItemType } from './Type';
 
 
 const App = () => {
   const [cartOpen, setCartOpen] = useState(false);
+  const [recentPurchasesOpen, setRecentPurchasesOpen] = useState(false)
   const [cartItems, setCartItems] = useState([] as CartItemType[]);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [clickCardIndex, setClickCardIndex] = useState<number>(2);
@@ -82,12 +84,16 @@ const App = () => {
             justify="space-between"
             alignItems="center"
           >
-            <StyledButton>
+            <StyledButton onClick={() => setRecentPurchasesOpen(true)}>
               <RestoreIcon />
               <Typography variant="subtitle2">
                 Recent Purchases
               </Typography>
             </StyledButton>
+
+            <Drawer anchor='top' open={recentPurchasesOpen} onClose={() => setRecentPurchasesOpen(false)}>
+              {/* <RecentPurchases  /> */}
+            </Drawer>
 
             <HeaderTypography variant="h3" noWrap>
               Welcome to Patient Zero's Cheeseria

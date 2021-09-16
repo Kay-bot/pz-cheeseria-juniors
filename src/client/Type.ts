@@ -10,6 +10,6 @@ export type CartItemType = {
 };
 
 export type RecentPurchasesType = {
-  cartItems:CartItemType[]
-  totalAmount: number
+  cartItems: CartItemType[];
+  totalAmount: number;
 }
