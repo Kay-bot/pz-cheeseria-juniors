@@ -10,6 +10,8 @@ export type CartItemType = {
 };
 
 export type RecentPurchasesType = {
+  purchaseId: string;
   cartItems: CartItemType[];
   totalAmount: number;
+  createdAt: string;
 }
