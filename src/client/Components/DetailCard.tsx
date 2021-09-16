@@ -14,15 +14,12 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       flexGrow: 1,
-      marginTop: 60,
-      marginLeft: 40,
-      marginRight: 40,
+      margin: 40,
     },
     paper: {
       padding: theme.spacing(2),
       margin: 'auto',
       minWidth: 400,
-
     },
     image: {
       maxWidth: 600,
