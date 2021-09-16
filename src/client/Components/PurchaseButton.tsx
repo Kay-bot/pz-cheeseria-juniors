@@ -2,7 +2,7 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
-import { CartItemType } from '../App';
+import { CartItemType } from '../Type';
 
 //types
 type Props = {

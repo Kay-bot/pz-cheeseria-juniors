@@ -71,9 +71,6 @@ const App = () => {
     createOrder({cartItems, totalAmount})
   }
 
-  if (isLoading) return <LinearProgress />;
-  if (error) return <div>Something went wrong ...</div>;
-
   return (
 
     <Wrapper>
@@ -124,6 +121,8 @@ const App = () => {
       </Drawer>
 
       <Grid container spacing={3}>
+      {isLoading && <LinearProgress />}
+      {error && <div>Something went wrong ...</div>}
         {data?.map(item => (
           <Grid item key={item.id} xs={12} sm={4} onClick={()=>{
             setDialogOpen(true);
